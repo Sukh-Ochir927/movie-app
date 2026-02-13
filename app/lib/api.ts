@@ -6,11 +6,13 @@ const topRatedUrl = "/movie/top_rated?language=en-US&page=1";
 
 const upComingUrl = "/movie/upcoming?language=en-US&page=1";
 
+const popularUrl = "/movie/popular?language=en-US&page=1";
+
 const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: `Bearer ${process.env.TMDB_TOKEN}`,
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_TOKEN}`,
   },
 };
 
@@ -27,6 +29,16 @@ export const getUpComingMovies = async (): Promise<Response> => {
 
   const data = await response.json();
   console.log("upcoming iin data", data);
+
+  return data;
+};
+
+export const getPopularMovies = async (): Promise<Response> => {
+  const response = await fetch(`${baseUrl}${popularUrl}`, options);
+
+  const data = await response.json();
+
+  console.log(data, "populariin data shu");
 
   return data;
 };

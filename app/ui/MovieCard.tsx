@@ -6,7 +6,7 @@ type MovieCardProps = {
 
 export const MovieCard = ({ title, rating, desc }: MovieCardProps) => {
   return (
-    <div className="grid">
+    <div>
       <h1>{title}</h1>
       <p>{rating}</p>
       <p>{desc}</p>

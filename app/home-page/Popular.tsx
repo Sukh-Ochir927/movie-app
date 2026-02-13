@@ -1,28 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getPopularMovies } from "../lib/api";
 import { Movie } from "../lib/types";
-import { getUpComingMovies } from "../lib/api";
 import { MovieCard } from "../ui/MovieCard";
 
-export const UpComingMoviesHome = () => {
-  const [upComingMovies, setUpComingMovies] = useState<Movie[]>([]);
+export const PopularMovies = () => {
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    const response = async () => {
-      const data = await getUpComingMovies();
+    const popularMovieByResponse = async () => {
+      const response = await getPopularMovies();
 
-      setUpComingMovies(data.results);
+      setMovies(response.results);
     };
-    response();
+    popularMovieByResponse();
   }, []);
   const imgBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
     <div className="container grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-      {upComingMovies &&
-        upComingMovies.map((movie) => (
-          <div key={movie.id} >
+      {movies &&
+        movies.map((movie) => (
+          <div key={movie.id}>
             <img src={`${imgBaseUrl}${movie.poster_path}`} alt={movie.title} />
             <MovieCard
               key={movie.id}

@@ -20,13 +20,10 @@ export const TopRatedMovies = () => {
 
   const imgBaseUrl = "https://image.tmdb.org/t/p/w500";
   return (
-    <>
+    <div className="container grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
       {movies &&
         movies.map((movie) => (
-          <div
-            key={movie.id}
-            className="container grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4"
-          >
+          <div key={movie.id}>
             <img src={`${imgBaseUrl}${movie.poster_path}`} alt={movie.title} />
             <MovieCard
               key={movie.id}
@@ -36,7 +33,7 @@ export const TopRatedMovies = () => {
             />
           </div>
         ))}
-    </>
+    </div>
   );
 };
 
