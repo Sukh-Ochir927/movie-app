@@ -19,19 +19,28 @@ export const UpComingMoviesHome = () => {
   const imgBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
-    <div className="container grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-      {upComingMovies &&
-        upComingMovies.map((movie) => (
-          <div key={movie.id} >
-            <img src={`${imgBaseUrl}${movie.poster_path}`} alt={movie.title} />
-            <MovieCard
-              key={movie.id}
-              title={movie.title}
-              desc={movie.overview}
-              rating={movie.vote_average}
-            />
-          </div>
-        ))}
+    <div className="p-20">
+      <div className="titles flex justify-between items-center">
+        <h2 className="text-[24px] font-semibold py-8 ">Upcoming</h2>
+        <a href="">see more</a>
+      </div>
+      <div className="container grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
+        {upComingMovies &&
+          upComingMovies.map((movie) => (
+            <div key={movie.id}>
+              <img
+                src={`${imgBaseUrl}${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <MovieCard
+                key={movie.id}
+                title={movie.title}
+                rating={movie.vote_average}
+                desc={movie.overview}
+              />
+            </div>
+          ))}
+      </div>
     </div>
   );
 };

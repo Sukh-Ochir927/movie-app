@@ -4,12 +4,11 @@ type MovieCardProps = {
   desc: string;
 };
 
-export const MovieCard = ({ title, rating, desc }: MovieCardProps) => {
+export const MovieCard = ({ title, rating }: MovieCardProps) => {
   return (
     <div>
       <h1>{title}</h1>
       <p>{rating}</p>
-      <p>{desc}</p>
     </div>
   );
 };

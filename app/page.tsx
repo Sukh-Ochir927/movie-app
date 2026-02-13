@@ -10,9 +10,9 @@ const Home = async () => {
     <div>
       <Header />
       <div className="flex flex-col justify-center border-red-50 items-center">
-        <TopRatedMovies />
-        <PopularMovies />
         <UpComingMoviesHome />
+        <PopularMovies />
+        <TopRatedMovies />
       </div>
     </div>
   );
