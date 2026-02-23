@@ -23,11 +23,11 @@ export const TopRatedMovies = () => {
     <div className="p-20">
       <div className="titles flex justify-between items-center">
         <h2 className="text-[24px] font-semibold py-8">Top rated</h2>
-        <a href="">see more</a>
+        <a href="/seeMore/topRated">see more</a>
       </div>
       <div className="container grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {movies &&
-          movies.map((movie) => (
+          movies.slice(10).map((movie) => (
             <div key={movie.id}>
               <img
                 src={`${imgBaseUrl}${movie.poster_path}`}

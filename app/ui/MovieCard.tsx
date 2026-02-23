@@ -12,3 +12,4 @@ export const MovieCard = ({ title, rating }: MovieCardProps) => {
     </div>
   );
 };
+  

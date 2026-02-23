@@ -20,7 +20,7 @@ export default function Header() {
       <h1>zmovie</h1>
       <div className="flex gap-3">
         <Button>Genre</Button>
-        <InputGroup className="w-95">
+        <InputGroup className="">
           <InputGroupInput placeholder="search" />
         </InputGroup>
       </div>
