@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Movie } from "../lib/types";
 import { getUpComingMovies } from "../lib/api";
 import { MovieCard } from "../ui/MovieCard";
-import Image from "next/image";
+
 
 export const UpComingMoviesHome = () => {
   const [upComingMovies, setUpComingMovies] = useState<Movie[]>([]);

@@ -28,7 +28,6 @@ export const getUpComingMovies = async (): Promise<Response> => {
   const response = await fetch(`${baseUrl}${upComingUrl}`, options);
 
   const data = await response.json();
-  console.log("upcoming iin data", data);
 
   return data;
 };
@@ -36,9 +35,7 @@ export const getUpComingMovies = async (): Promise<Response> => {
 export const getPopularMovies = async (): Promise<Response> => {
   const response = await fetch(`${baseUrl}${popularUrl}`, options);
 
-  const data = await response.json();
-
-  console.log(data, "populariin data shu");
+  const data = await response.json();   
 
   return data;
 };

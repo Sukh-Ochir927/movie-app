@@ -1,6 +1,10 @@
 import { PopularMovies } from "./home-page/Popular";
+
 import { TopRatedMovies } from "./home-page/TopRated";
+
 import { UpComingMoviesHome } from "./home-page/upcoming";
+
+import Footer from "./ui/Footer";
 
 import Header from "./ui/Header";
 
@@ -13,6 +17,7 @@ const Home = async () => {
         <PopularMovies />
         <TopRatedMovies />
       </div>
+      <Footer />
     </div>
   );
 };
