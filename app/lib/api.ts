@@ -1,4 +1,4 @@
-import { Response, Movie } from "./types";
+import { Response, Movie, Details } from "./types";
 
 const baseUrl = "https://api.themoviedb.org/3";
 
@@ -35,7 +35,20 @@ export const getUpComingMovies = async (): Promise<Response> => {
 export const getPopularMovies = async (): Promise<Response> => {
   const response = await fetch(`${baseUrl}${popularUrl}`, options);
 
-  const data = await response.json();   
+  const data = await response.json();
+
+  return data;
+};
+
+export const getMoviesByMovieIds = async (
+  movieId: string,
+): Promise<Details> => {
+  const response = await fetch(
+    `${baseUrl}/movie/${movieId}?language=en-US`,
+    options,
+  );
+
+  const data = await response.json();
 
   return data;
 };

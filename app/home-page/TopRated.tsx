@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getTopRatedMovies, getUpComingMovies } from "../lib/api";
+import { getTopRatedMovies } from "../lib/api";
 
 import { Movie } from "../lib/types";
 import { MovieCard } from "../ui/MovieCard";
@@ -18,7 +18,6 @@ export const TopRatedMovies = () => {
     response();
   }, []);
 
-  const imgBaseUrl = "https://image.tmdb.org/t/p/w500";
   return (
     <div className="p-20">
       <div className="titles flex justify-between items-center">
@@ -29,11 +28,8 @@ export const TopRatedMovies = () => {
         {movies &&
           movies.slice(10).map((movie) => (
             <div key={movie.id}>
-              <img
-                src={`${imgBaseUrl}${movie.poster_path}`}
-                alt={movie.title}
-              />
               <MovieCard
+                posterPath={movie.poster_path}
                 key={movie.id}
                 title={movie.title}
                 rating={movie.vote_average}

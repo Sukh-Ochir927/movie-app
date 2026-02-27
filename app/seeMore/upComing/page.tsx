@@ -9,20 +9,14 @@ const page = async () => {
 
   const movies = response.results;
 
-  const imgBaseUrl = "https://image.tmdb.org/t/p/w500";
-
   return (
     <div>
       <Header />
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 p-20">
         {movies.map((movie) => (
           <div key={movie.id}>
-            <img
-              src={`${imgBaseUrl}${movie.poster_path}`}
-              alt={movie.title}
-              className="object-cover"
-            />
             <MovieCard
+              posterPath={movie.poster_path}
               title={movie.title}
               rating={movie.vote_average}
               desc={movie.overview}

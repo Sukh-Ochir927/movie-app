@@ -11,16 +11,14 @@ const page = async () => {
 
   console.log("Top Rated movies on clicks see more ", movies);
 
-  const baseUrlImg = "https://image.tmdb.org/t/p/w500";
-
   return (
     <div>
       <Header />
       <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 p-20">
         {movies.map((movie) => (
           <div key={movie.id}>
-            <img src={`${baseUrlImg}${movie.poster_path}`} alt={movie.title} />
             <MovieCard
+              posterPath={movie.poster_path}
               key={movie.id}
               title={movie.title}
               rating={movie.vote_average}

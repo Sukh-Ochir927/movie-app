@@ -5,7 +5,6 @@ import { getPopularMovies } from "../lib/api";
 import { Movie } from "../lib/types";
 import { MovieCard } from "../ui/MovieCard";
 
-
 export const PopularMovies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
@@ -17,7 +16,6 @@ export const PopularMovies = () => {
     };
     popularMovieByResponse();
   }, []);
-  const imgBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
     <div className="p-20">
@@ -30,11 +28,8 @@ export const PopularMovies = () => {
         {movies &&
           movies.slice(10).map((movie) => (
             <div key={movie.id}>
-              <img
-                src={`${imgBaseUrl}${movie.poster_path}`}
-                alt={movie.title}
-              />
               <MovieCard
+                posterPath={movie.poster_path}
                 key={movie.id}
                 title={movie.title}
                 desc={movie.overview}
