@@ -22,6 +22,19 @@ export interface Movie {
   vote_count: number;
 }
 
+export type ReleaseDateItem = {
+  certification: string;
+  iso_639_1: string;
+  note: string;
+  release_date: string;
+  type: number;
+};
+
+export type ReleaseDatesCountry = {
+  iso_3166_1: string;
+  release_dates: ReleaseDateItem[];
+};
+
 export interface Details {
   adult: boolean;
   backdrop_path: string;
@@ -48,6 +61,7 @@ export interface Details {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  release_dates?: { results: ReleaseDatesCountry[] };
 }
 
 export interface Genre {

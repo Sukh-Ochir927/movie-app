@@ -46,11 +46,13 @@ export const getMoviesByMovieIds = async (
   movieId: string,
 ): Promise<Details> => {
   const response = await fetch(
-    `${baseUrl}/movie/${movieId}?language=en-US`,
+    `${baseUrl}/movie/${movieId}?language=en-US&append_to_response=release_dates`,
     options,
   );
 
   const data = await response.json();
+
+  console.log("movieId aar avsan kinonii datanuud", data.release_dates);
 
   return data;
 };
