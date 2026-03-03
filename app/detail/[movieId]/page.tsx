@@ -11,5 +11,5 @@ export default async function MovieDetail({ params }: MovieDetailProps) {
 
   console.log(data);
 
-  return <div>{movieId}</div>;
+  return <div>hi</div>;
 }

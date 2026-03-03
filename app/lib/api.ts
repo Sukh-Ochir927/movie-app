@@ -8,6 +8,8 @@ const upComingUrl = "/movie/upcoming?language=en-US&page=1";
 
 const popularUrl = "/movie/popular?language=en-US&page=1";
 
+const nowPlayingUrl = "/movie/now_playing";
+
 const options = {
   method: "GET",
   headers: {
@@ -52,3 +54,5 @@ export const getMoviesByMovieIds = async (
 
   return data;
 };
+
+export const getNowPlayingMovies = async () => {};
