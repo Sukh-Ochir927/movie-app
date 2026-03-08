@@ -93,3 +93,9 @@ export type CrewMember = {
   department: string;
   profile_path: string | null;
 };
+
+export type CrewData = {
+  director: CrewMember;
+  writers: CrewMember[];
+  stars: CrewMember[];
+};

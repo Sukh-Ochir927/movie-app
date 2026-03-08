@@ -1,5 +1,9 @@
-import { CrewData, getMovieDirector, getMoviesByMovieIds } from "@/app/lib/api";
-import { CrewMember, Details } from "@/app/lib/types";
+import {
+  getMovieDirector,
+  getMoviesByMovieIds,
+  getSimilarMovies,
+} from "@/app/lib/api";
+import { Details, CrewData } from "@/app/lib/types";
 
 type MovieDetailProps = {
   params: Promise<{ movieId: string }>;
@@ -10,7 +14,10 @@ export default async function MovieDetail({ params }: MovieDetailProps) {
 
   const movie: Details = await getMoviesByMovieIds(movieId);
 
-  const { director, writers }: CrewData = await getMovieDirector(movieId);
+  const { director, writers, stars }: CrewData =
+    await getMovieDirector(movieId);
+
+  const similarMovies = await getSimilarMovies(movieId);
 
   const usRelease = movie.release_dates?.results.find(
     (country) => country.iso_3166_1 === "US",
@@ -19,8 +26,6 @@ export default async function MovieDetail({ params }: MovieDetailProps) {
   const ageRating = usRelease?.release_dates?.[0]?.certification || "NR";
 
   const baseUrlImg = "https://image.tmdb.org/t/p/w500";
-
-  console.log(writers, "Zohiolch");
 
   return (
     <div>
@@ -43,7 +48,26 @@ export default async function MovieDetail({ params }: MovieDetailProps) {
         </div>
         <div>
           <h1>Writers</h1>
-          <p>{}</p>
+          <p>{writers.map((writer) => writer.name).join(" ")}</p>
+        </div>
+        <div>
+          <h1>Stars</h1>
+          <p>{stars?.map((star) => star.name).join(" ")}</p>
+        </div>
+      </div>
+      <div>
+        <h1>More like this</h1>
+        <div>
+          {similarMovies.results.map((movie) => (
+            <div key={movie.id}>
+              <img
+                src={`${baseUrlImg}${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <p>{movie.vote_average}</p>
+              <p>{movie.title}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

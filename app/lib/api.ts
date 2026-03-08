@@ -1,4 +1,4 @@
-import { Response, Details, CrewMember } from "./types";
+import { Response, Details, CrewMember, CrewData } from "./types";
 
 const baseUrl = "https://api.themoviedb.org/3";
 
@@ -60,11 +60,6 @@ export const getMoviesByMovieIds = async (
   return data;
 };
 
-export type CrewData = {
-  director: CrewMember;
-  writers: CrewMember[];
-};
-
 export const getMovieDirector = async (movieId: string): Promise<CrewData> => {
   const response = await fetch(`${baseUrl}/movie/${movieId}/credits`, options);
 
@@ -78,6 +73,16 @@ export const getMovieDirector = async (movieId: string): Promise<CrewData> => {
       person.job === "Writer" ||
       person.job === "Story",
   );
+  const stars = data.cast.slice(0, 3);
 
-  return { director, writers };
+  return { director, writers, stars };
+};
+
+export const getSimilarMovies = async (movieId: string): Promise<Response> => {
+  const response = await fetch(
+    `${baseUrl}/movie/${movieId}/similar?language=en-US&page=1`,
+    options,
+  );
+  const data = await response.json();
+  return data;
 };
