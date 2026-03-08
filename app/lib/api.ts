@@ -1,4 +1,4 @@
-import { Response, Movie, Details } from "./types";
+import { Response, Details, CrewMember } from "./types";
 
 const baseUrl = "https://api.themoviedb.org/3";
 
@@ -27,7 +27,10 @@ export const getTopRatedMovies = async (): Promise<Response> => {
 };
 
 export const getUpComingMovies = async (): Promise<Response> => {
-  const response = await fetch(`${baseUrl}${upComingUrl}`, options);
+  const response = await fetch(
+    `${baseUrl}/movie/upcoming?language=en-US&page=1`,
+    options,
+  );
 
   const data = await response.json();
 
@@ -57,4 +60,24 @@ export const getMoviesByMovieIds = async (
   return data;
 };
 
-export const getNowPlayingMovies = async () => {};
+export type CrewData = {
+  director: CrewMember;
+  writers: CrewMember[];
+};
+
+export const getMovieDirector = async (movieId: string): Promise<CrewData> => {
+  const response = await fetch(`${baseUrl}/movie/${movieId}/credits`, options);
+
+  const data = await response.json();
+  const director = data.crew.find(
+    (person: CrewMember) => person.job === "Director",
+  );
+  const writers = data.crew.filter(
+    (person: CrewMember) =>
+      person.job === "Screenplay" ||
+      person.job === "Writer" ||
+      person.job === "Story",
+  );
+
+  return { director, writers };
+};

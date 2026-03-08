@@ -86,3 +86,10 @@ export interface SpokenLanguage {
   iso_639_1: string;
   name: string;
 }
+export type CrewMember = {
+  id: number;
+  name: string;
+  job: string;
+  department: string;
+  profile_path: string | null;
+};
